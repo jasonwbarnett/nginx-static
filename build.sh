@@ -113,6 +113,9 @@ get_headers_more_nginx_module
 get_nginx ## This must be last as we depend on this function to place us in the correct directory for ./configure phase
 
 ./configure --prefix="${PREFIX}" \
+  --with-cc-opt="-static -static-libgcc" \
+  --with-ld-opt="-static" \
+  --with-cpu-opt=generic \
   --sbin-path=/usr/sbin/nginx \
   --conf-path="${PREFIX}/nginx.conf" \
   --error-log-path=/var/log/nginx/error.log \
