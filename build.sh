@@ -114,7 +114,6 @@ get_nginx ## This must be last as we depend on this function to place us in the 
 
 ./configure --prefix="${PREFIX}" \
   --with-cc-opt="-static -static-libgcc" \
-  --with-ld-opt="-static" \
   --with-cpu-opt=generic \
   --sbin-path=/usr/sbin/nginx \
   --conf-path="${PREFIX}/nginx.conf" \
