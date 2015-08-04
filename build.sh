@@ -16,7 +16,7 @@ function get_pagespeed () {
 
 function get_ngx_http_auth_pam_module () {
   local version=1.4
-  wget "https://github.com/stogh/ngx_http_auth_pam_module/archive/v${version}tar.gz"
+  wget "https://github.com/stogh/ngx_http_auth_pam_module/archive/v${version}.tar.gz"
   tar zxf v${version}.tar.gz
   # => ngx_http_auth_pam_module-${version}
 }
