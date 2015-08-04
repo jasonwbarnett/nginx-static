@@ -6,7 +6,8 @@ BUILD_DIR=${PWD}/build
 
 function get_and_extract_artifact () {
   local url=$1
-  local artifact=$(basename $url)
+  local artifact=$(basename ${url})
+  local artifact_dir=$(echo ${artifact} | sed 's|\.tar\.gz||g')
   if [[ ! -f ${artifact} ]];then
     echo -n "## Fetching ${url}... "
     curl -L -s ${url} -O
@@ -14,7 +15,8 @@ function get_and_extract_artifact () {
   fi
 
   echo -n "## Extracting artifact ${artifact}... "
-  tar zxif ${artifact}
+  [[ -d ${artifact_dir} ]] || mkdir ${artifact_dir}
+  tar zxif ${artifact} --strip-components=1 -C ${artifact_dir}
   echo "done"
 }
 
@@ -49,12 +51,24 @@ function get_openssl () {
   get_and_extract_artifact "https://www.openssl.org/source/openssl-${version}.tar.gz"
 }
 
+function get_zlib () {
+  local version=1.2.8
+  get_and_extract_artifact "http://zlib.net/zlib-${version}.tar.gz"
+}
+
+function get_pcre () {
+  local version=8.34
+  get_and_extract_artifact "http://downloads.sourceforge.net/project/pcre/pcre/${version}/pcre-${version}.tar.gz"
+}
+
 [[ ! -d ${BUILD_DIR} ]] && mkdir ${BUILD_DIR}
 
 cd ${BUILD_DIR}
 get_pagespeed
 get_ngx_http_auth_pam_module
 get_headers_more_nginx_module
+get_zlib
+get_pcre
 get_nginx
 get_openssl
 
