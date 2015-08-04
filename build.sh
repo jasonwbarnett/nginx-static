@@ -147,3 +147,4 @@ get_nginx ## This must be last as we depend on this function to place us in the 
   ${BUILD_OPTIONS} \
   --with-cc-opt=-Wno-error
 
+make -j1
