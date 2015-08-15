@@ -10,8 +10,9 @@ BUILD_OPTIONS=""
 [[ -n ${GROUP} ]]  || GROUP="nginx"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  echo "Building for Linux"
     BUILD_OPTIONS="${BUILD_OPTIONS} --with-file-aio"
-    BUILD_OPTIONS="${BUILD_OPTIONS} --with-ld-opt=\"-static\""
+    BUILD_OPTIONS="${BUILD_OPTIONS} --with-ld-opt=-static"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   echo "Building for Mac OS X"
 elif [[ "$OSTYPE" == "cygwin" ]]; then
@@ -138,6 +139,5 @@ get_nginx ## This must be last as we depend on this function to place us in the 
   --with-mail_ssl_module \
   --with-ipv6 \
   ${BUILD_OPTIONS} \
-  --with-cc-opt=-Wno-error
-
-make -j1
+  --with-cc-opt=-Wno-error &&
+  make -j1
