@@ -11,23 +11,16 @@ BUILD_OPTIONS=""
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     BUILD_OPTIONS="${BUILD_OPTIONS} --with-file-aio"
-elif [[ "$OSTYPE" == "darwin" ]]; then
-  echo "hello"
-        # Mac OSX
+    BUILD_OPTIONS="${BUILD_OPTIONS} --with-ld-opt=\"-static\""
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  echo "Building for Mac OS X"
 elif [[ "$OSTYPE" == "cygwin" ]]; then
-  echo "hello"
-        # POSIX compatibility layer and Linux environment emulation for Windows
-elif [[ "$OSTYPE" == "msys" ]]; then
-  echo "hello"
-        # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
-elif [[ "$OSTYPE" == "win32" ]]; then
-  echo "hello"
-        # I'm not sure this can happen.
+  echo "Building for Cygwin"
 elif [[ "$OSTYPE" == "freebsd"* ]]; then
     BUILD_OPTIONS="${BUILD_OPTIONS} --with-file-aio"
 else
-  echo "hello"
-        # Unknown.
+  echo "Uknown/unsupported OS ($OSTYPE), exiting... "
+  exit 1
 fi
 
 function get_and_extract_artifact () {
