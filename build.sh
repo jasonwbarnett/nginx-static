@@ -102,8 +102,8 @@ cd ${BUILD_DIR}
 get_openssl
 get_zlib
 get_pcre
-#get_pagespeed
-#get_ngx_http_auth_pam_module
+get_pagespeed
+get_ngx_http_auth_pam_module
 get_headers_more_nginx_module
 get_nginx ## This must be last as we depend on this function to place us in the correct directory for ./configure phase
 
