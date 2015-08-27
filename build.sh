@@ -109,6 +109,7 @@ get_nginx ## This must be last as we depend on this function to place us in the 
 
 ./configure \
     --prefix=${_sysconfdir}/nginx \
+    --with-cpu-opt=generic \
     --sbin-path=${_sbindir}/nginx \
     --conf-path=${_sysconfdir}/nginx/nginx.conf \
     --error-log-path=${_localstatedir}/log/nginx/error.log \
