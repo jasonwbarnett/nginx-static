@@ -77,7 +77,7 @@ function get_nginx () {
 
 function get_openssl () {
   local version=1.0.2d
-  local dir=$(get_and_extract_artifact "https://www.openssl.org/source/openssl-${version}.tar.gz")
+  local dir=$(get_and_extract_artifact "http://www.openssl.org/source/openssl-${version}.tar.gz")
 
   build_options="${build_options} --with-openssl=${dir}"
 }
